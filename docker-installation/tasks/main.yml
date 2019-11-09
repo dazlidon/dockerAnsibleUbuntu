@@ -1,0 +1,6 @@
+- include: software.yml
+- include: start_docker.yml
+- include: pull_image.yml
+- include: run_image.yml
+
+

@@ -1,0 +1,9 @@
+- name: start docker
+  shell: systemctl start docker
+- name: enable docker
+  shell: systemctl enable docker
+- name: verify status of docker
+  shell: systemctl status docker
+  register: resulted_something
+- debug: var=resulted_something.stdout_lines
+

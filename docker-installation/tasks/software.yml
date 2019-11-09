@@ -1,0 +1,19 @@
+- name: check_if_docker_is_installed
+  shell: dpkg -l | grep docker
+  register: check_if_docker_is_installed
+
+- name: install_docker
+  yum:
+    name: docker
+    state: latest
+  when: "'package docker is not installed' in check_if_docker_is_installed.stdout"
+
+- name: create user "{{ user_for_creation }}"
+  user:
+    name: "{{ user_for_creation }}"
+    password: xxxxxxx
+    groups: docker
+  become_user: root
+- name: add user to docker group
+  shell: usermod -a -G docker "{{ user_for_creation }}"
+  become_user: root

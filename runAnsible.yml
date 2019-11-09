@@ -1,0 +1,8 @@
+---
+- hosts: dev
+  remote_user: root
+  vars:
+    user_for_creation: duduie
+    image: ubuntu
+  roles:
+    - docker-installation

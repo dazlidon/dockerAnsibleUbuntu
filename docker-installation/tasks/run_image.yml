@@ -1,0 +1,5 @@
+- name: run image docker
+  shell: docker run -t -d "{{ image }}"
+  register: pulled_image
+  become_user: duduie
+- debug: var=pulled_image.stdout_lines
