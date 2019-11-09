@@ -1,5 +1,10 @@
 - name: run image docker
   shell: docker run -t -d "{{ image }}"
-  register: pulled_image
+  register: image_run
   become_user: duduie
-- debug: var=pulled_image.stdout_lines
+- debug: var=image_run.stdout_lines
+- name: run universal control pane
+  shell: docker run -t -d --name ucp \ -v /var/run/docker.sock:/var/run/docker.sock \ docker/ucp:3.2.0 install \ --host-address 10.94.214.115 \ --interactive
+  register: universal_controller_image
+  become_user: duduie
+- debug: var=universal_controller_image.stdout_lines
